@@ -6,6 +6,7 @@ const slugify = require("slugify");
 const Picture = require("../models/Picture");
 const Text = require("../models/Text");
 const Gig = require("../models/Gig");
+const Url = require("../models/Url");
 
 const options = {
   replacement: "-",
@@ -245,6 +246,34 @@ router.post("/backoffice/gig/delete", async (req, res) => {
   try {
     await Gig.findByIdAndDelete(req.fields._id);
     res.status(200).json("Successfully deleted!");
+  } catch (error) {
+    res.status(400).json({ message: error.message });
+  }
+});
+
+router.post("/backoffice/url/create", async (req, res) => {
+  try {
+    if (!req.fields.name) {
+      res
+        .status(400)
+        .json("You must fill out the name field in order to upload music!");
+    } else {
+      const newUrl = new Url({
+        name: req.fields.name,
+        url: req.fields.url,
+      });
+      await newUrl.save();
+      res.status(200).json(newUrl);
+    }
+  } catch (error) {
+    res.status(400).json({ message: error.message });
+  }
+});
+
+router.post("/backoffice/url/delete", async (req, res) => {
+  try {
+    await Gig.findByIdAndDelete(req.fields._id);
+    res.status(200).json("Successfully deleted");
   } catch (error) {
     res.status(400).json({ message: error.message });
   }

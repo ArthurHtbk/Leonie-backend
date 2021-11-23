@@ -4,6 +4,7 @@ const router = express.Router();
 const Picture = require("../models/Picture");
 const Text = require("../models/Text");
 const Gig = require("../models/Gig");
+const Url = require("../models/Url");
 
 router.get("/client/pictures", async (req, res) => {
   try {
@@ -32,10 +33,19 @@ router.get("/client/text", async (req, res) => {
   }
 });
 
-router.get("/client/gigs/", async (req, res) => {
+router.get("/client/gigs", async (req, res) => {
   try {
     const gigs = await Gig.find();
     res.status(200).json(gigs);
+  } catch (error) {
+    res.status(400).json({ message: error.message });
+  }
+});
+
+router.get("/client/urls", async (req, res) => {
+  try {
+    const urls = await Url.find();
+    res.status(200).json(urls);
   } catch (error) {
     res.status(400).json({ message: error.message });
   }
