@@ -272,7 +272,7 @@ router.post("/backoffice/url/create", async (req, res) => {
 
 router.post("/backoffice/url/delete", async (req, res) => {
   try {
-    await Gig.findByIdAndDelete(req.fields._id);
+    await Url.findByIdAndDelete(req.fields._id);
     res.status(200).json("Successfully deleted");
   } catch (error) {
     res.status(400).json({ message: error.message });
