@@ -78,6 +78,19 @@ router.post("/backoffice/picture/hero", async (req, res) => {
   }
 });
 
+router.post("/backoffice/picture/isHero", async (req, res) => {
+  try {
+    const picture = await Picture.findById(req.fields._id);
+    if (picture.hero) {
+      res.status(200).json(true);
+    } else {
+      res.status(200).json(false);
+    }
+  } catch (error) {
+    res.status(400).json({ message: error.message });
+  }
+});
+
 router.post("/backoffice/picture/delete", async (req, res) => {
   try {
     await Picture.findByIdAndDelete(req.fields._id);
