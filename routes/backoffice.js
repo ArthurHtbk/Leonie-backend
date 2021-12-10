@@ -29,12 +29,10 @@ router.post("/backoffice/login", (req, res) => {
 router.post("/backoffice/picture/create", async (req, res) => {
   try {
     if (!req.fields.name) {
-      res
-        .status(400)
-        .json({
-          message:
-            "You must fill out the name field in order to upload a picture!",
-        });
+      res.status(400).json({
+        message:
+          "You must fill out the name field in order to upload a picture!",
+      });
     } else if (!req.files.image) {
       res.status(400).json({ message: "No picture uploaded!" });
     } else {
@@ -50,7 +48,7 @@ router.post("/backoffice/picture/create", async (req, res) => {
       res.status(200).json(newPicture);
     }
   } catch (error) {
-    res.status(400).json({ message: error.message });
+    res.status(400).json({ message: "Tu t'es bien planté espèce de connaud!" });
   }
 });
 
