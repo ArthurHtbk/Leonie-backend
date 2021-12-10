@@ -42,6 +42,15 @@ router.get("/client/gigs", async (req, res) => {
   }
 });
 
+router.get("/client/gigs/:slug", async (req, res) => {
+  try {
+    const gig = await Gig.findOne(req.params);
+    res.status(200).json(gig);
+  } catch (error) {
+    res.status(400).json({ message: error.message });
+  }
+});
+
 router.get("/client/urls", async (req, res) => {
   try {
     const urls = await Url.find();
