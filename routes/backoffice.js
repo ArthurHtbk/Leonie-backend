@@ -31,9 +31,12 @@ router.post("/backoffice/picture/create", async (req, res) => {
     if (!req.fields.name) {
       res
         .status(400)
-        .json("You must fill out the name field in order to upload a picture!");
+        .json({
+          message:
+            "You must fill out the name field in order to upload a picture!",
+        });
     } else if (!req.files.image) {
-      res.status(400).json("No picture uploaded!");
+      res.status(400).json({ message: "No picture uploaded!" });
     } else {
       const newPicture = new Picture({
         hero: false,
