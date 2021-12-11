@@ -202,10 +202,12 @@ router.post("/backoffice/gig/create", async (req, res) => {
           DE: req.fields.DE,
         },
       });
-      const result = await cloudinary.uploader.upload(req.files.image.path, {
-        folder: `/leonie/gig/${newGig._id}`,
-      });
-      newGig.image = result;
+      if (req.files.image) {
+        const result = await cloudinary.uploader.upload(req.files.image.path, {
+          folder: `/leonie/gig/${newGig._id}`,
+        });
+        newGig.image = result;
+      }
       await newGig.save();
       res.status(200).json(newGig);
     }
