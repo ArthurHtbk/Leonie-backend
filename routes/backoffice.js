@@ -218,7 +218,7 @@ router.post("/backoffice/gig/create", async (req, res) => {
 
 router.post("/backoffice/gig/update", async (req, res) => {
   try {
-    const gig = await Gig.findOne({ name: req.fields.name });
+    const gig = await Gig.findById(req.fields._id);
     if (req.fields.name) {
       gig.name = req.fields.name;
       gig.slug = slugify(req.fields.name, options);
