@@ -14,5 +14,5 @@ Welcome to the back-end repository of Leonie Hey's website!
 
 ## Check this out!
 
-- **[Leonie Hey](https://confident-brahmagupta-9636d2.netlify.app/)**
+- **[Leonie Hey](https://leonie-hey-temp.netlify.app)**
 - **The corresponding [front-end repository](https://github.com/ArthurHtbk/leonie-frontend)**
